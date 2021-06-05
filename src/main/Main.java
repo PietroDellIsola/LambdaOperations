@@ -18,38 +18,23 @@ public class Main {
 		System.out.println("----------------------------------------------------------");
 		
 		System.out.println("The female students are:");
-		for (Student s: StudentUtils.findAnybyGender(cr.getStudents(), 'F'))
-		{
-			System.out.println(s);
-		}
+		StudentUtils.findAnybyGender(cr.getStudents(), 'F').forEach(System.out::println);
 		System.out.println("----------------------------------------------------------");
 		
 		System.out.println("Students ordered by surname:");
-		for (Student s: StudentUtils.orderBySurname(cr.getStudents()))
-		{
-			System.out.println(s);
-		}
+		StudentUtils.orderBySurname(cr.getStudents()).forEach(System.out::println);
 		System.out.println("----------------------------------------------------------");
 		
 		System.out.println("Students ordered by name:");
-		for (Student s: StudentUtils.orderByName(cr.getStudents()))
-		{
-			System.out.println(s);
-		}
+		StudentUtils.orderByName(cr.getStudents()).forEach(System.out::println);
 		System.out.println("----------------------------------------------------------");
 		
 		System.out.println("Students ordered reverse by surname:");
-		for (Student s: StudentUtils.reverseOrderBySurname(cr.getStudents()))
-		{
-			System.out.println(s);
-		}
+		StudentUtils.reverseOrderBySurname(cr.getStudents()).forEach(System.out::println);
 		System.out.println("----------------------------------------------------------");
 		
 		System.out.println("Students ordered reverse by name:");
-		for (Student s: StudentUtils.reverseOrderByName(cr.getStudents()))
-		{
-			System.out.println(s);
-		}
+		StudentUtils.reverseOrderByName(cr.getStudents()).forEach(System.out::println);
 		System.out.println("----------------------------------------------------------");
 		
 		System.out.println("Are there any students with surname that starts with \"X\"?");
