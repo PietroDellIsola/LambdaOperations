@@ -3,6 +3,8 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.utils.StudentUtils;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -11,13 +13,56 @@ public class Main {
 		cr.setName("5A - IT");
 		cr.setStudents(returningStudents());
 		
-		//Applying operations TODO
+		System.out.println("The student with the IdentificationNumber = 0000123 is:\n"
+				+StudentUtils.findFirstByNumberPlate(cr.getStudents(), "0000123").get());
+		System.out.println("----------------------------------------------------------");
 		
+		System.out.println("The female students are:");
+		for (Student s: StudentUtils.findAnybyGender(cr.getStudents(), 'F'))
+		{
+			System.out.println(s);
+		}
+		System.out.println("----------------------------------------------------------");
 		
+		System.out.println("Students ordered by surname:");
+		for (Student s: StudentUtils.orderBySurname(cr.getStudents()))
+		{
+			System.out.println(s);
+		}
+		System.out.println("----------------------------------------------------------");
+		
+		System.out.println("Students ordered by name:");
+		for (Student s: StudentUtils.orderByName(cr.getStudents()))
+		{
+			System.out.println(s);
+		}
+		System.out.println("----------------------------------------------------------");
+		
+		System.out.println("Students ordered reverse by surname:");
+		for (Student s: StudentUtils.reverseOrderBySurname(cr.getStudents()))
+		{
+			System.out.println(s);
+		}
+		System.out.println("----------------------------------------------------------");
+		
+		System.out.println("Students ordered reverse by name:");
+		for (Student s: StudentUtils.reverseOrderByName(cr.getStudents()))
+		{
+			System.out.println(s);
+		}
+		System.out.println("----------------------------------------------------------");
+		
+		System.out.println("Are there any students with surname that starts with \"X\"?");
+		System.out.println(StudentUtils.surnamesStartWith(cr.getStudents(), "X") == true ? "Yes" : "No");
+		System.out.println("----------------------------------------------------------");
+		
+		System.out.println("How many male students are there in class?");
+		System.out.println(StudentUtils.numberOfStudentWithGenderSpecified(cr.getStudents(), 'M'));
+		System.out.println("----------------------------------------------------------");
 	}
 	
 	private static List<Student> returningStudents() {
-		ArrayList<Student> students = new ArrayList<Student>();
+		List<Student> students = new ArrayList<Student>();
 		Student s1 = new Student();
 		s1.setGender('M');
 		s1.setName("Ron");

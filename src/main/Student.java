@@ -41,4 +41,8 @@ public class Student {
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
+	@Override
+	public String toString() {
+		return name+" "+surname+", "+gender+", "+identificationNumber;
+	}
 }
