@@ -1,10 +1,12 @@
 package main.utils;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import main.School;
 import main.Student;
 
 public class StudentUtils {
@@ -76,5 +78,24 @@ public class StudentUtils {
 	public static long numberOfStudentWithGenderSpecified(List<Student> students, char gender) {
 		return students.stream().filter(s -> gender == s.getGender()).count();
 	}
-		
+	
+	public static List<Student> findStudentsInSchool(School school, String... identificationNumbers) {
+		if (school == null || identificationNumbers.length == 0)
+			return null;
+
+		List<Student> studentsFinded = new ArrayList<Student>();
+		Optional<Student> student = null;
+		for (String identificationNumber : identificationNumbers) {
+			student = school.getClassRooms().stream().flatMap(classRoom -> classRoom.getStudents().stream())
+					.filter(s -> identificationNumber.equalsIgnoreCase(s.getIdentificationNumber())).findFirst();
+
+			if (student.isPresent()) {
+				studentsFinded.add(student.get());
+			}
+
+		}
+
+		return studentsFinded;
+	}
+
 }

@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import main.utils.StudentUtils;
 
@@ -44,6 +45,24 @@ public class Main {
 		System.out.println("How many male students are there in class?");
 		System.out.println(StudentUtils.numberOfStudentWithGenderSpecified(cr.getStudents(), 'M'));
 		System.out.println("----------------------------------------------------------");
+		
+		School school = new School();
+		school.setName("");
+		ArrayList<ClassRoom> classRooms = new ArrayList<ClassRoom>();
+		classRooms.add(cr);
+		school.setClassRooms(classRooms);
+		school.setName("Hogwarts");
+
+		System.out.println("Finding Harry Potter in "+school.getName());
+		Optional.ofNullable(StudentUtils.findStudentsInSchool(school, "0000005"))
+		.ifPresent(v -> v.forEach(System.out::println));
+		System.out.println("----------------------------------------------------------");
+		
+		System.out.println("Finding Hermione Granger and Ron Weasley in "+school.getName());
+		Optional.ofNullable(StudentUtils.findStudentsInSchool(school, "0000155", "0000123"))
+		.ifPresent(v -> v.forEach(System.out::println));
+		System.out.println("----------------------------------------------------------");
+		
 	}
 	
 	private static List<Student> returningStudents() {
